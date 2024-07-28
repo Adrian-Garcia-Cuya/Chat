@@ -4,6 +4,7 @@ import { Server as ServerIO } from 'socket.io';
 import cors from 'cors';
 
 import { IServer, Path } from '../interfaces/IServer';
+import connection from '../../config/database';
 
 export default class Server implements IServer {
 
@@ -21,6 +22,17 @@ export default class Server implements IServer {
         this.paths = {
             auth: '/api/auth',
             users: '/api/users'
+        }
+
+        this.DBConnection();
+    }
+
+    async DBConnection(): Promise<void> {
+        try {
+            await connection.authenticate();
+            console.log( 'Base de datos conectada.' );
+        } catch( error ){
+            throw new Error( 'No se puede establecer conexión con la base de datos' );
         }
     }
 
