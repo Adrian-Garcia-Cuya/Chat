@@ -25,6 +25,8 @@ export default class Server implements IServer {
         }
 
         this.DBConnection();
+
+        this.middlewares();
     }
 
     async DBConnection(): Promise<void> {
@@ -34,6 +36,11 @@ export default class Server implements IServer {
         } catch( error ){
             throw new Error( 'No se puede establecer conexión con la base de datos' );
         }
+    }
+
+    middlewares(){
+        this.app.use( cors() );
+        this.app.use( express.json() );
     }
 
     public listen(): void {
