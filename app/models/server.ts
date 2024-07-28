@@ -3,19 +3,21 @@ import express, { Express } from 'express';
 import { Server as ServerIO } from 'socket.io';
 import cors from 'cors';
 
-import { IServer, Path } from '../interfaces/IServer';
+import { IServer, Path } from '../interfaces/models/IServer';
 import connection from '../../config/database';
+
+import authRoutes from '../routes/authRoutes';
 
 export default class Server implements IServer {
 
-    public readonly port: string|undefined;
+    public readonly port: number;
     public readonly app: Express;
     public readonly server: HttpServer;
     public readonly io: ServerIO;
     public readonly paths: Path;
 
     constructor() {
-        this.port = process.env.PORT,
+        this.port = Number(process.env.PORT) ?? 3000,
         this.app = express(),
         this.server = createServer( this.app ),
         this.io = new ServerIO( this.server ),
@@ -27,6 +29,7 @@ export default class Server implements IServer {
         this.DBConnection();
 
         this.middlewares();
+        this.routes();
     }
 
     async DBConnection(): Promise<void> {
@@ -38,9 +41,13 @@ export default class Server implements IServer {
         }
     }
 
-    middlewares(){
+    middlewares(): void {
         this.app.use( cors() );
         this.app.use( express.json() );
+    }
+
+    routes(): void {
+        this.app.use( this.paths.auth, authRoutes );
     }
 
     public listen(): void {

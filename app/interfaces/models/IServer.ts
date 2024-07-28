@@ -3,7 +3,7 @@ import { Server as ServerIo } from "socket.io"
 import { Server as HttpServer } from "http"
 
 export interface IServer {
-    port: string | undefined,
+    port: number,
     app: Express,
     server: HttpServer
     io: ServerIo,
