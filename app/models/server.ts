@@ -5,6 +5,7 @@ import cors from 'cors';
 
 import { IServer, Path } from '../interfaces/models/IServer';
 import connection from '../../config/database';
+import { socketHandler } from '../../sockets/socketHandler';
 
 import authRoutes from '../routes/authRoutes';
 
@@ -30,6 +31,8 @@ export default class Server implements IServer {
 
         this.middlewares();
         this.routes();
+
+        this.sockets();
     }
 
     async DBConnection(): Promise<void> {
@@ -48,6 +51,10 @@ export default class Server implements IServer {
 
     routes(): void {
         this.app.use( this.paths.auth, authRoutes );
+    }
+
+    sockets(): void {
+        this.io.on( 'connection', socketHandler );
     }
 
     public listen(): void {
