@@ -6,7 +6,7 @@ import { checkValidationErrors } from "../middlewares/validationHandler";
 
 const router = Router();
 
-router.post( 'login', [
+router.post( '/login', [
     body( 'email', 'Por favor, ingrese un correo válido' ).notEmpty().isEmail(),
     body( 'password', 'Debe ingresar una contraseña.' ).notEmpty(),
     checkValidationErrors

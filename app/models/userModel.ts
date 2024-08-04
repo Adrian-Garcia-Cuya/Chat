@@ -42,7 +42,7 @@ User.init(
         }
     },{
         sequelize: connection,
-        modelName: 'User',
+        modelName: 'user',
         timestamps: false
     }
 );

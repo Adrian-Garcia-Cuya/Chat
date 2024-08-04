@@ -8,6 +8,7 @@ import connection from '../../config/database';
 import { socketHandler } from '../../sockets/socketHandler';
 
 import authRoutes from '../routes/authRoutes';
+import userRoutes from '../routes/userRoutes';
 
 export default class Server implements IServer {
 
@@ -51,6 +52,7 @@ export default class Server implements IServer {
 
     routes(): void {
         this.app.use( this.paths.auth, authRoutes );
+        this.app.use( this.paths.users, userRoutes );
     }
 
     sockets(): void {
