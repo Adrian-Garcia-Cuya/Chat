@@ -1,5 +1,5 @@
 import jwt, { Secret } from 'jsonwebtoken'
-import { Payload } from '../types/UserRequest';
+import { Payload } from '../types/Payload';
 
 const generateJWT = ( userId: string ): Promise<string> => {
     const secretKey: Secret|undefined =  process.env.SECRET_KEY;
