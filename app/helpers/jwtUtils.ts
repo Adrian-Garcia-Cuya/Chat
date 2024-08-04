@@ -1,16 +1,17 @@
 import jwt, { Secret } from 'jsonwebtoken'
+import { Payload } from '../types/UserRequest';
 
-const generateJWT = ( userId: number ): Promise<string> => {
-    const privateKey: Secret|undefined =  process.env.PRIVATE_KEY;
+const generateJWT = ( userId: string ): Promise<string> => {
+    const secretKey: Secret|undefined =  process.env.SECRET_KEY;
 
-     if ( !privateKey ) {
+     if ( !secretKey ) {
         return Promise.reject( 'La llave secreta no está definida.' );
      }
 
     return new Promise( ( res, rej ) => {
-        const payload = { userId };
+        const payload: Payload = { userId };
 
-        jwt.sign( payload, privateKey , {
+        jwt.sign( payload, secretKey, {
             expiresIn: '4h',
             }, ( error, token ) => {
                 if ( error ) {
