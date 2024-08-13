@@ -1,8 +1,6 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import connection from "../../config/database";
 import { IUserModel } from "../interfaces/models/IUserModel";
-
-interface UserCreationAttributes extends Optional<IUserModel, 'image_url'|'state'>{}
 
 class User extends Model implements IUserModel{
     public id!: number;
@@ -17,7 +15,7 @@ class User extends Model implements IUserModel{
 User.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.BIGINT.UNSIGNED,
             autoIncrement: true,
             primaryKey: true,
         },
