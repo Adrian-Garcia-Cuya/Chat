@@ -31,7 +31,9 @@ Room.init(
     },
     {
         sequelize: connection,
-        modelName: 'room'
+        modelName: 'room',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
     }
 )
 

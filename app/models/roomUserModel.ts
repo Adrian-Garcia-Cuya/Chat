@@ -37,7 +37,8 @@ RoomUser.init(
     {
         sequelize: connection,
         modelName: 'room_user',
-        timestamps: false
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
     }
 )
 

@@ -40,7 +40,9 @@ Message.init(
     },
     {
         sequelize: connection,
-        modelName: 'message'
+        modelName: 'message',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
     }
 );
 

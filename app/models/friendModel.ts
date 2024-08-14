@@ -2,7 +2,12 @@ import { DataTypes, Model } from "sequelize";
 import connection from "../../config/database";
 import User from "./userModel";
 
-class Friend extends Model {}
+class Friend extends Model {
+    public id!: number;
+    public user1_id!: number;
+    public user2_id!:number;
+    public state?: boolean;
+}
 
 Friend.init(
     {
@@ -30,12 +35,14 @@ Friend.init(
         state: {
             type: DataTypes.TINYINT,
             defaultValue: 1,
-            allowNull: false
+            allowNull: false,
         }
     },
     {
         sequelize: connection,
-        modelName: 'friend'
+        modelName: 'friend',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
     }
 );
 

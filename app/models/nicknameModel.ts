@@ -34,7 +34,8 @@ Nickname.init(
     },
     {
         sequelize: connection,
-        modelName: 'nickname'
+        modelName: 'nickname',
+        timestamps: false
     }
 );
 
