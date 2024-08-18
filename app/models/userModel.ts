@@ -7,7 +7,7 @@ class User extends Model implements IUserModel{
     public name!: string;
     public email!: string;
     public password!: string;
-    public phone!: string;
+    public phoneNumber!: string;
     public image_url?: string;
     public state?: number;
 }
@@ -28,7 +28,7 @@ User.init(
         password:{
             type: DataTypes.STRING
         },
-        phone:{
+        phone_number:{
             type: DataTypes.CHAR(9)
         },
         image_url:{
