@@ -4,7 +4,7 @@ import { Request, Response } from 'express';
 import User from '../models/userModel'
 import { generateJWT } from '../helpers/jwtUtils';
 
-import { Login } from '../types/Login';
+import { Login } from '../types/auth/Login';
 
 const login = async ( req: Request<{}, {}, Login>, res: Response ) => {
 
