@@ -4,8 +4,8 @@ import User from "./userModel";
 
 class Friend extends Model {
     public id!: number;
-    public user1_id!: number;
-    public user2_id!:number;
+    public user_id!: number;
+    public friend_id!:number;
     public state?: boolean;
 }
 
@@ -16,7 +16,7 @@ Friend.init(
             autoIncrement: true,
             primaryKey: true,
         },
-        user1_id: {
+        user_id: {
             type: DataTypes.BIGINT.UNSIGNED,
             references: {
                 model: User,
@@ -24,7 +24,7 @@ Friend.init(
             },
             allowNull: false
         },
-        user2_id: {
+        friend_id: {
             type: DataTypes.BIGINT.UNSIGNED,
             references: {
                 model: User,
