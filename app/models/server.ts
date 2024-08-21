@@ -9,6 +9,7 @@ import { socketHandler } from '../../sockets/socketHandler';
 
 import authRoutes from '../routes/authRoutes';
 import userRoutes from '../routes/userRoutes';
+import contactRoutes from '../routes/contactRoutes';
 
 export default class Server implements IServer {
 
@@ -29,7 +30,8 @@ export default class Server implements IServer {
         }),
         this.paths = {
             auth: '/api/auth',
-            users: '/api/users'
+            users: '/api/users',
+            contacts: '/api/contacts'
         }
 
         this.DBConnection();
@@ -57,6 +59,7 @@ export default class Server implements IServer {
     routes(): void {
         this.app.use( this.paths.auth, authRoutes );
         this.app.use( this.paths.users, userRoutes );
+        this.app.use( this.paths.contacts, contactRoutes );
     }
 
     sockets(): void {
