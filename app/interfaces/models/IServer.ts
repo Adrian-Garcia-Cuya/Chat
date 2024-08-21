@@ -16,5 +16,6 @@ export interface IServer {
 
 export interface Path {
     auth: string,
-    users: string
+    users: string,
+    contacts: string
 }
