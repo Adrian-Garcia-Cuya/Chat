@@ -4,6 +4,6 @@ export interface IUserModel {
     email: string,
     password: string,
     phoneNumber: string,
-    image_url?: string,
+    imageUrl?: string,
     state?: number
 }
