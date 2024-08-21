@@ -1,4 +1,4 @@
-import { Payload } from './../types/Payload';
+import { Payload } from '../types/auth/Payload';
 import jwt, { Secret } from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 
