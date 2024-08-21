@@ -1,6 +1,6 @@
 import { DataTypes, Model } from "sequelize";
 import connection from "../../config/database";
-import User from "./userModel";
+import Friend from "./friendModel";
 
 class Nickname extends Model {}
 
@@ -11,30 +11,27 @@ Nickname.init(
             autoIncrement: true,
             primaryKey: true,
         },
-        user_id: {
-            type: DataTypes.BIGINT.UNSIGNED,
-            references: {
-                model: User,
-                key: 'id'
-            },
-            allowNull: false
-        },
         friend_id: {
             type: DataTypes.BIGINT.UNSIGNED,
             references: {
-                model: User,
+                model: Friend,
                 key: 'id'
             },
             allowNull: false
         },
-        name: {
+        nickname: {
             type: DataTypes.STRING(150),
+            allowNull: false
+        },
+        block: {
+            type: DataTypes.TINYINT,
+            defaultValue: 2,
             allowNull: false
         }
     },
     {
         sequelize: connection,
-        modelName: 'nickname',
+        modelName: 'friends_setting',
         timestamps: false
     }
 );
