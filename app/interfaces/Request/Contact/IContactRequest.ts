@@ -1,4 +1,4 @@
-import { ContactPhoneNumberParams } from "../../../types/Contact/ContactParams";
+import { ContactParams } from "../../../types/Contact/ContactParams";
 import { ContactBody } from "../../../types/Contact/ContactRequest";
 import { BaseRequest } from "../BaseRequest";
 
@@ -7,6 +7,6 @@ export interface CreateContactRequest extends BaseRequest<{}, {}, ContactBody, {
 
 }
 
-export interface DeleteContactRequest extends BaseRequest<ContactPhoneNumberParams, {}, ContactBody, {}> {
-
+export interface ContactRequest extends BaseRequest<ContactParams, {}, ContactBody, {}> {
+    friendId?: number
 }
