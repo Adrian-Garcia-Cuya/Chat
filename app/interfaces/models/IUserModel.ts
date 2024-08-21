@@ -3,7 +3,7 @@ export interface IUserModel {
     name: string,
     email: string,
     password: string,
-    phone: string,
-    image_url?: string,
+    phoneNumber: string,
+    imageUrl?: string,
     state?: number
 }

@@ -2,8 +2,8 @@ import { Request, Response } from "express";
 import bcryptjs from "bcryptjs";
 
 import User from "../models/userModel";
-import { UserRequest } from "../types/UserRequest";
-import { UserParams } from "../types/UserParams";
+import { UserRequest } from "../types/User/UserRequest";
+import { UserParams } from "../types/User/UserParams";
 
 const store = async( req: Request<{}, {}, UserRequest>, res: Response ): Promise<void> => {
 

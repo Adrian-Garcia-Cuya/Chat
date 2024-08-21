@@ -1,11 +1,11 @@
-import { Payload } from './../types/Payload';
+import { Payload } from '../types/auth/Payload';
 import jwt, { Secret } from 'jsonwebtoken';
 import { NextFunction, Request, Response } from 'express';
 
 import User from '../models/userModel';
-import { validatedUser } from '../interfaces/Request/UserRequest';
+import { BaseRequest } from '../interfaces/Request/BaseRequest';
 
-const checkJWT = async( req: Request, res: Response, next: NextFunction ): Promise<void> => {
+const checkJWT = async( req: BaseRequest<{},{},{},{}>, res: Response, next: NextFunction ): Promise<void> => {
 
     const token = req.header('x-token');
     if( !token ) {
@@ -47,8 +47,8 @@ const checkJWT = async( req: Request, res: Response, next: NextFunction ): Promi
             return;
         }
         
-        ( req as validatedUser ).id = userId;
-        ( req as validatedUser ).user = user;
+        req.id = userId;
+        req.user = user;
 
         next();
         

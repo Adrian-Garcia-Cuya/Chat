@@ -1,23 +1,21 @@
-import { DataTypes, Model, Optional } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import connection from "../../config/database";
 import { IUserModel } from "../interfaces/models/IUserModel";
-
-interface UserCreationAttributes extends Optional<IUserModel, 'image_url'|'state'>{}
 
 class User extends Model implements IUserModel{
     public id!: number;
     public name!: string;
     public email!: string;
     public password!: string;
-    public phone!: string;
-    public image_url?: string;
+    public phoneNumber!: string;
+    public imageUrl?: string;
     public state?: number;
 }
 
 User.init(
     {
         id: {
-            type: DataTypes.INTEGER.UNSIGNED,
+            type: DataTypes.BIGINT.UNSIGNED,
             autoIncrement: true,
             primaryKey: true,
         },
@@ -30,11 +28,13 @@ User.init(
         password:{
             type: DataTypes.STRING
         },
-        phone:{
-            type: DataTypes.CHAR(9)
+        phoneNumber:{
+            type: DataTypes.CHAR(9),
+            field: 'phone_number'
         },
-        image_url:{
-            type: DataTypes.STRING
+        imageUrl:{
+            type: DataTypes.STRING,
+            field: 'image_url'
         },
         state:{
             type: DataTypes.TINYINT,
@@ -43,7 +43,8 @@ User.init(
     },{
         sequelize: connection,
         modelName: 'user',
-        timestamps: false
+        createdAt: 'created_at',
+        updatedAt: 'updated_at'
     }
 );
 

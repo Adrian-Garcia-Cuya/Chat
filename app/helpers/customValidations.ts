@@ -1,3 +1,6 @@
+import { Op } from "sequelize";
+
+import Friend from "../models/friendModel";
 import User from "../models/userModel";
 
 const checkEmailNotInUse = async( email: string ): Promise<void> => {
@@ -7,11 +10,13 @@ const checkEmailNotInUse = async( email: string ): Promise<void> => {
     }
 }
 
-const checkUserExistence = async( id: number ) => {
+const checkUserExistence = async( id: number ): Promise<boolean> => {
     const user = await User.findByPk( id );
     if ( !user ) {
         throw new Error( `El usuario con id ${id} no existe.` );
     }
+
+    return true;
 }
 
 export {
