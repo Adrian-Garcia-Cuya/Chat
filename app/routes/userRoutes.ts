@@ -20,12 +20,12 @@ router.post( '/', [
 ], store );
 
 router.put( '/:id', [
+    checkJWT,
     param('id', 'El id debe ser un entero.').isInt(),
     param('id').custom( checkUserExistence ),
     body('name', 'Es necesario agregar un nombre.').notEmpty().optional(),
     body('phoneNumber', 'El numero ingresado no debe ser mayor ni menor a 9 digitos.').notEmpty().isInt().isLength({ min: 9, max: 9}).optional(),
     body('image_url', 'Debe ingresar una URL valida.').optional().isString(),
-    checkJWT,
     checkValidationErrors
 ], update );
 
