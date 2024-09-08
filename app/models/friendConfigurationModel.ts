@@ -2,9 +2,9 @@ import { DataTypes, Model } from "sequelize";
 import connection from "../../config/database";
 import Friend from "./friendModel";
 
-class Nickname extends Model {}
+class FriendConfiguration  extends Model {}
 
-Nickname.init(
+FriendConfiguration.init(
     {
         id: {
             type: DataTypes.BIGINT.UNSIGNED,
@@ -31,9 +31,9 @@ Nickname.init(
     },
     {
         sequelize: connection,
-        modelName: 'friends_setting',
+        modelName: 'friends_configuration',
         timestamps: false
     }
 );
 
-export default Nickname;
+export default FriendConfiguration;
