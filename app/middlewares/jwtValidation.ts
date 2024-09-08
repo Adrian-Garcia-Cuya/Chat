@@ -1,9 +1,9 @@
-import { Payload } from '../types/auth/Payload';
 import jwt, { Secret } from 'jsonwebtoken';
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
 
 import User from '../models/userModel';
 import { BaseRequest } from '../interfaces/Request/BaseRequest';
+import { isPayload } from '../helpers/predicates';
 
 const checkJWT = async( req: BaseRequest<{},{},{},{}>, res: Response, next: NextFunction ): Promise<void> => {
 
@@ -58,10 +58,6 @@ const checkJWT = async( req: BaseRequest<{},{},{},{}>, res: Response, next: Next
             msg: 'Token no valido.'
         });
     }
-}
-
-const isPayload = ( payload: jwt.JwtPayload|string|Payload ): payload is Payload => {
-    return (payload as Payload).userId !== undefined;
 }
 
 export {
