@@ -1,6 +1,3 @@
-import { Op } from "sequelize";
-
-import Friend from "../models/friendModel";
 import User from "../models/userModel";
 
 const checkEmailNotInUse = async( email: string ): Promise<void> => {
